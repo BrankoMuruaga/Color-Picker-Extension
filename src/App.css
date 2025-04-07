@@ -1,0 +1,128 @@
+
+:root{
+  --color-primary: #232629; /* Color de fondo principal */
+
+  /* Definición de componentes HSL para mejor manipulación */
+  --hue-default: 210; /* Tono del color por defecto */
+  --saturation-default: 5%; /* Saturación del color por defecto */
+  --lightness-default: 30%; /* Luminosidad del color por defecto */
+  
+  /* Colores usando HSL */
+  --color-default: hsl(var(--hue-default), var(--saturation-default), var(--lightness-default));
+  --color-hover: hsl(var(--hue-default), calc(var(--saturation-default) + 5%), calc(var(--lightness-default) - 5%));
+  --color-active: hsl(var(--hue-default), calc(var(--saturation-default) + 10%), calc(var(--lightness-default) - 10%));
+
+  --text-color: hsl(0, 0%, calc((var(--lightness-default) < 50%) * 100%));
+}
+
+
+
+
+html{
+  height: 18rem;
+  width: 15rem;
+  background-color: var(--color-primary);
+  border-radius: 50%;
+}
+
+body{
+  height: 18rem;
+  width: 15rem;
+  background-color: var(--color-primary);;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+#btn_dropper{
+  background-color: var(--color-default);
+  border-radius: 50%;
+  color: var(--text-color);
+  padding: 10px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+
+  &:hover{
+    background-color: var(--color-hover);
+  }
+  &:active{
+    background-color: var(--color-active);
+  }
+}
+
+#color_input{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-default);
+  border-radius: 5rem 0 0 5rem;
+  color:  var(--text-color);
+  padding: 10px;
+  padding-inline: 0;
+  text-align: center;
+  font-size: 14px;
+  border: none;
+  width: 100%;
+  outline: none;
+
+  &:hover{
+    background-color: var(--color-hover);
+  }
+  &:active{
+    background-color: var(--color-active);
+  }
+}
+
+#color_input_container{
+  display: grid;
+  grid-template-columns: 20% 80%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "btn_dropper color_input";
+  align-content: center;
+  justify-items: center;
+  outline: none;
+  border: none;
+
+}
+
+#color_input_wrapper{
+  display: flex;
+  justify-content: center;
+  max-width: 90%;
+  overflow: hidden;
+}
+
+#copy_button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0 5rem 5rem 0;
+  background-color: var(--color-default);
+  color:  var(--text-color);
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+
+  &:hover{
+    background-color: var(--color-hover);
+  }
+
+  &:active{
+    background-color: var(--color-active);
+  }
+}
