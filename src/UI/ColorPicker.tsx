@@ -5,6 +5,7 @@ import ColoPalette from "../components/ColorPalette";
 import { HexColorInput } from "react-colorful";
 import CopyButton from "../components/CopyButton";
 import EyeDrop from "../components/EyeDrop";
+import RecentColors from "../components/RecentColors";
 import { useColor } from "../context/ColorContext";
 
 function ColorPicker() {
@@ -20,6 +21,7 @@ function ColorPicker() {
           <CopyButton id="copy_button" />
         </div>
       </div>
+      <RecentColors />
     </section>
   );
 }
