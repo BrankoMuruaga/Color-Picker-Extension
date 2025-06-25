@@ -5,6 +5,7 @@ import React, { createContext, useState, useContext, ReactNode } from "react";
 interface ColorContextProps {
   color: string;
   setColor: (color: string) => void;
+  recentColors: string[];
 }
 
 const ColorContext = createContext<ColorContextProps | undefined>(undefined);
@@ -62,9 +63,26 @@ export const ColorProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [color, setColorState] = useState<string>("#4d5862");
+  const [recentColors, setRecentColors] = useState<string[]>(() => {
+    if (typeof window !== "undefined") {
+      const stored = localStorage.getItem("recentColors");
+      return stored ? JSON.parse(stored) : [];
+    }
+    return [];
+  });
 
   const setColor = (newColor: string) => {
     setColorState(newColor);
+    setRecentColors((prev) => {
+      const updated = [newColor, ...prev.filter((c) => c !== newColor)].slice(
+        0,
+        5
+      );
+      if (typeof window !== "undefined") {
+        localStorage.setItem("recentColors", JSON.stringify(updated));
+      }
+      return updated;
+    });
 
     // Extraer componentes HSL del nuevo color
     const [hue, saturation, lightness] = hexToHSL(newColor);
@@ -86,7 +104,7 @@ export const ColorProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    <ColorContext.Provider value={{ color, setColor }}>
+    <ColorContext.Provider value={{ color, setColor, recentColors }}>
       {children}
     </ColorContext.Provider>
   );

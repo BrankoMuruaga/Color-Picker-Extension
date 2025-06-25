@@ -126,3 +126,17 @@ section{
     background-color: var(--color-active);
   }
 }
+
+
+.recent-colors {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.recent-colors button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+}
